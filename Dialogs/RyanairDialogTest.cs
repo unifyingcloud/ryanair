@@ -6,7 +6,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using System.Net.Http;
 
 
-namespace Ryanair.Echobot
+namespace Microsoft.Bot.Sample.SimpleEchoBot
 {
     [Serializable]
     public class RyanairTest : IDialog<object>
