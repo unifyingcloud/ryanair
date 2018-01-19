@@ -22,7 +22,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         {
             var message = await argument;
 
-            if (message.Text == "reset")
+            if (message.Text == "reset2")
             {
                 PromptDialog.Confirm(
                     context,
@@ -31,6 +31,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     "Didn't get that!",
                     promptStyle: PromptStyle.Auto);
             }
+            
             else
             {
                 await context.PostAsync($"{this.count++}: You said {message.Text}");
