@@ -5,6 +5,9 @@ using Microsoft.Bot.Connector;
 using Microsoft.Bot.Builder.Dialogs;
 using System.Net.Http;
 using System.Net;
+using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Microsoft.Bot.Sample.SimpleEchoBot
 {
@@ -71,7 +74,14 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 {
                     json = sr.ReadToEnd();
                 }
+
+                            
+                JToken token = JToken.Parse(json);
+                    
+                    
+                    Console.WriteLine("Your intent is :" + token.SelectToken("topScoringIntent.intent"));
                     await context.PostAsync(json);
+
 
 
 
