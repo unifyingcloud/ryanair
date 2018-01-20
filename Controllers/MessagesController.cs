@@ -23,7 +23,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             // check if activity is of type message
             if (activity != null && activity.GetActivityType() == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new RyanairTest());
+                await Conversation.SendAsync(activity, () => new RootDialog());
             }
             else
             {
