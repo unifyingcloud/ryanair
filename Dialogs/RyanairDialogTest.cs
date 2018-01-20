@@ -81,11 +81,13 @@ public static string parsearJSONInfoVuelo (JToken token){
 
     public static string parsearJSONVuelos (JToken token){
 		string response = "";
-            try{ 
+            try{
 
-                String status = "";//token.SelectToken("flights[0].status.message").ToString();
+                response = token.ToString();
+
+            /*    String status = "";//token.SelectToken("flights[0].status.message").ToString();
 			
-                response += "Flight " + token.SelectToken("flights[0].number").ToString() + ":   " + status +".\n\n" + token.ToString();	
+               // response += "Flight " + token.SelectToken("flights[0].number").ToString() + ":   " + status +".\n\n" + token.ToString();	
 
                 Object[] fares = token.SelectToken("fares").ToArray();
                 for (int i = 0; i < fares.Length; i++)
@@ -93,7 +95,7 @@ public static string parsearJSONInfoVuelo (JToken token){
 
                     response += "Flight number " + token.SelectToken("flights["+ i +"].number")  ;// goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
 
-                }
+                }*/
 
 
             }
