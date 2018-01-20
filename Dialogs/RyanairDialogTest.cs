@@ -152,8 +152,10 @@ public static string parsearJSONInfoVuelo (JToken token){
                     PromptStyle.Auto);
             }else if (message.Text.ToUpper() == "FLIGHTS STATUS")
             {
-             
-                 context.await("Please type your flight number");
+               await context.PostAsync("Please type your flight number");
+
+                context.Wait(this.flightNumberAsync);
+                
             }
             else
             {
@@ -243,7 +245,14 @@ public static string parsearJSONInfoVuelo (JToken token){
             context.Wait(MessageReceivedAsync);
         }
 
-
+    private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
+        {
+            var message = await result;
+            
+              await context.PostAsync("Your flight is on time");
+            
+            
+            }
     public async Task AfterCheapFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
             var resultValue = await argument;
