@@ -33,7 +33,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             BotOptions.Add("SXF-Berlin Schönefeld");
             BotOptions.Add("STN-London Stansted");
             BotOptions.Add("TLS-Toulouse");
-            BotOptions.Add("MLA-Malta");
+           BotOptions.Add("MLA-Malta");
             BotOptions.Add("CIA-Rome Ciampino");
             BotOptions.Add("LPA-Gran Canaria");
             BotOptions.Add("TFN-Tenerife North");
@@ -76,7 +76,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             BotOptions.Add("BGY-Milan Bergamo");
             BotOptions.Add("DUB-Dublin");
             BotOptions.Add("LPA-Gran Canaria");
-            BotOptions.Add("ACE-Lanzarote");
+            BotOptions.Add("ACE-Lanzarote"); 
 
 
 
@@ -91,18 +91,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     "Didn't get that", 
                     1, 
                     PromptStyle.Auto);
-            }
-             else if (message.Text.ToUpper() == "ARRIVAL STATS")
-            {
-                
-                PromptDialog.Choice(context, 
-                    AfterFlightsAsync,BotOptions,
-                    "Your closest airport is Madrid, Barajas. Where is the flight coming from?", 
-                    "Didn't get that", 
-                    1, 
-                    PromptStyle.Auto);
-            }
-            else
+              }  else
             {
                 
 
@@ -168,7 +157,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 this.count = 1;
                
 
-                WebRequest request = WebRequest.Create("http://apigateway.ryanair.com/pub/v1/flightinfo/3/flights?departureAirportIataCode=MAD&arrivalAirportIataCode="+  confirm  +"&apikey=axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                WebRequest request = WebRequest.Create("http://apigateway.ryanair.com/pub/v1/flightinfo/3/flights?departureAirportIataCode=MAD&arrivalAirportIataCode="+  confirm.ToString().Substring(0,3)  +"&apikey=axQgeITSziRuQSDAG765w1M3iXnkTAET");
                 WebResponse response = request.GetResponse();
 
                 string json;
