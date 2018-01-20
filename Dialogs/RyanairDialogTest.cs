@@ -96,10 +96,21 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
             if (message.Text.ToUpper() == "CHEAP FLIGHTS FROM HERE")
             {
-             
+                List<string> BotMonthOptions = new List<string>();
+                BotOptions.Add("January");
+                BotOptions.Add("February");
+                BotOptions.Add("March");
+                BotOptions.Add("April");
+                BotOptions.Add("May");
+                BotOptions.Add("June");
+                BotOptions.Add("July");
+                BotOptions.Add("Augost");
+                BotOptions.Add("September");
+
+
                 PromptDialog.Choice(context, 
-                    AfterCheapFlightsAsync,BotOptions,
-                    "Your closest airport is Madrid, Barajas. Please choose your destination", 
+                                    AfterCheapFlightsAsync,BotMonthOptions,
+                    "Your closest airport is Madrid, Barajas. Please select a Month when you want to fly", 
                     "Didn't get that", 
                     1, 
                     PromptStyle.Auto);
@@ -206,11 +217,52 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
     public async Task AfterCheapFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
             var resultValue = await argument;
-            String confirm = resultValue.ToString().Substring(0,3) ;
+            String confirm = resultValue.ToString() ;
+            String DateFrom = "";
+            String DateTo = "";
+
+            switch (confirm)
+            {
+                case "January":
+                    DateFrom = "2018-01-01";
+                    DateTo="2018-01-31";
+                    break;
+                case "February":
+                    DateFrom = "2018-02-01";
+                    DateTo = "2018-02-31";
+                    break;
+                case "March":
+                    DateFrom = "2018-03-01";
+                    DateTo = "2018-03-31";
+                    break;
+                case "April":
+                    DateFrom = "2018-04-01";
+                    DateTo = "2018-04-31";
+                    break;
+                case "May":
+                    DateFrom = "2018-05-01";
+                    DateTo = "2018-05-31";
+                    break;
+                case "June":
+                    DateFrom = "2018-06-01";
+                    DateTo = "2018-06-31";
+                    break;
+                case "July":
+                    DateFrom = "2018-07-01";
+                    DateTo = "2018-07-31";
+                    break;
+                case "Augost":
+                    DateFrom = "2018-08-01";
+                    DateTo = "2018-08-31";
+                    break;
+
+            }
+
+
             if (confirm!="")
             {
               
-                  String resultJSON= obtenerVuelosBaratos("MAD","2018-01-29", "2018-02-02", "axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                String resultJSON= obtenerVuelosBaratos("MAD",DateFrom, DateTo, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
 	             await context.PostAsync(parsearJSON(token)); 
 
