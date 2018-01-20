@@ -251,7 +251,7 @@ public static string parsearJSONInfoVuelo (JToken token){
                     resp=parsearJSON(token);
                 }
                 catch(Exception ex){
-                    resp = ex.Message;
+                    resp = ex.Message + resultJSON;
 
                 }
                 await context.PostAsync(resp); 
