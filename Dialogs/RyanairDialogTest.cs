@@ -120,9 +120,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
 
                 JToken token = JToken.Parse(json);
-                    
-                string TopIntent =token.SelectToken("topScoringIntent.intent").ToString();
 
+                string TopIntent = token.SelectToken("topScoringIntent.intent").ToString();
                 string Entity1 =token.SelectToken("entities[0].entity").ToString();
                 string Entity2 =token.SelectToken("entities[1].entity").ToString();
 
