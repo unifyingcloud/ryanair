@@ -201,42 +201,40 @@ public static string parsearJSONInfoVuelo (JToken token){
             {
                 
                 await context.PostAsync("Result");
-               
-                WebRequest request = WebRequest.Create("https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/1703b0e2-e00d-466e-8f99-710cfc850299?subscription-key=7cadeb2e13cf4cd3803cc832b6dfcd15&verbose=true&timezoneOffset=0&q" + message.Text);
+
+                try(WebRequest request = WebRequest.Create("https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/1703b0e2-e00d-466e-8f99-710cfc850299?subscription-key=7cadeb2e13cf4cd3803cc832b6dfcd15&verbose=true&timezoneOffset=0&q=" + message.Text);
                 WebResponse response = request.GetResponse();
 
 
 
-             
-                  String json;
+
+                String json;
 
                 using (var sr = new StreamReader(response.GetResponseStream()))
                 {
                     json = sr.ReadToEnd();
                 }
 
-              
-                await context.PostAsync(json);
-                /*
+
                 JToken token = JToken.Parse(json);
 
-               // await context.PostAsync(json);
-                 
-                string TopIntent = token.SelectToken("topScoringIntent.intent").ToString();
-             //   string Entity1 =token.SelectToken("entities[0].entity").ToString();
-               // string Entity2 =token.SelectToken("entities[1].entity").ToString();
+                // await context.PostAsync(json);
 
-                                
-                    switch (TopIntent)
+                string TopIntent = token.SelectToken("topScoringIntent.intent").ToString();
+                //   string Entity1 =token.SelectToken("entities[0].entity").ToString();
+                // string Entity2 =token.SelectToken("entities[1].entity").ToString();
+
+
+                switch (TopIntent)
                 {
                     case "ry.sales.search":
-                            PromptDialog.Choice(context,
-                            AfterFlightsAsync, BotOptions,
-                            "Your closest airport is Madrid, Barajas. Please choose your destination",
-                            "Didn't get that",
-                            1,
-                            PromptStyle.Auto);
-                        
+                        PromptDialog.Choice(context,
+                        AfterFlightsAsync, BotOptions,
+                        "Your closest airport is Madrid, Barajas. Please choose your destination",
+                        "Didn't get that",
+                        1,
+                        PromptStyle.Auto);
+
                         break;
                     case "":
                         Console.WriteLine("Case 2");
@@ -245,6 +243,13 @@ public static string parsearJSONInfoVuelo (JToken token){
                         Console.WriteLine("Default case");
                         break;
                 }
+
+                }
+                catch (Exception ex)
+                {
+                    await context.PostAsync("Can you repeat that? I found an issue with LUIS: " + ex.Message);
+
+                }
                      
              //   await context.PostAsync("Your intent is: "+   TopIntent + " and your entities: " + Entity1+ " " + Entity2);
 
@@ -252,8 +257,7 @@ public static string parsearJSONInfoVuelo (JToken token){
                 //await context.PostAsync($"{this.count++}: You said {message.Text}");
               //  context.Wait(MessageReceivedAsync);
 
- */
-            }
+             }
         }
 
 
