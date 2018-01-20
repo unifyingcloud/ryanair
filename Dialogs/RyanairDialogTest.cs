@@ -207,8 +207,8 @@ public static string parsearJSONInfoVuelo (JToken token){
 
 
 
-                await context.PostAsync("Result");
-                /*   String json;
+             
+                  String json;
 
                 using (var sr = new StreamReader(response.GetResponseStream()))
                 {
@@ -216,7 +216,8 @@ public static string parsearJSONInfoVuelo (JToken token){
                 }
 
               
-
+                await context.PostAsync(json);
+                /*
                 JToken token = JToken.Parse(json);
 
                // await context.PostAsync(json);
