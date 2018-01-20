@@ -66,7 +66,7 @@ public static string parsearJSONInfoVuelo (JToken token){
 	}
 	
 
-    public static string parsearJSON (JToken token){
+    public static string parsearJSONVuelos (JToken token){
 		string response = "Vuelos:";
 		/*string status = token.SelectToken("flights[0].status.message").ToString();
 			
@@ -243,7 +243,7 @@ public static string parsearJSONInfoVuelo (JToken token){
               
                   String resultJSON=  obtenerVuelos("MAD", confirm, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
-	             await context.PostAsync(parsearJSON(token)); 
+	             await context.PostAsync(parsearJSONVuelos(token)); 
 
         		
 
