@@ -135,12 +135,12 @@ public static string parsearJSONInfoVuelo (JToken token){
             BotOptions.Add("STN-London Stansted");
             BotOptions.Add("CAG-Cagliari");
             BotOptions.Add("CIA-Rome Ciampino");
-            BotOptions.Add("PMI-Mallorca");
+            BotOptions.Add("PMI-Mallorca");/*  
           BotOptions.Add("EIN-Eindhoven");
             BotOptions.Add("BLQ-Bologna");
             BotOptions.Add("OTP-Bucharest");
             BotOptions.Add("FEZ-Fez");
-            BotOptions.Add("RAK-Marrakesh");/*  
+            BotOptions.Add("RAK-Marrakesh");
             BotOptions.Add("WRO-Wroclaw");
             BotOptions.Add("WMI-Warsaw Modlin");
             BotOptions.Add("MAN-Manchester");
