@@ -39,6 +39,32 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         }
         
 
+        public static string obtenerInfoVuelo(int number, string apikey){
+		string response;
+		string url = "http://apigateway.ryanair.com/pub/v1/flightinfo/3/flights?number=" + number + "&apikey=" + apikey;
+		
+		//Llamada a API Ryanair
+		WebRequest WebRequest = WebRequest.Create(url);
+        
+		WebResponse WebResponse = WebRequest.GetResponse();
+		
+		using (var sr = new StreamReader(WebResponse.GetResponseStream()))
+                {
+                    response = sr.ReadToEnd();
+                }
+		return response;
+	}
+
+
+public static string parsearJSONInfoVuelo (JToken token){
+		string response = "";
+		string status = token.SelectToken("flights[0].status.message").ToString();
+			
+		response += "El vuelo número " + token.SelectToken("flights[0].number").ToString() + " está " + status +".\n\n";	
+
+		return response;
+	}
+	
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             var message = await argument;
@@ -97,15 +123,15 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             if (message.Text.ToUpper() == "CHEAP FLIGHTS FROM HERE")
             {
                 List<string> BotMonthOptions = new List<string>();
-                BotOptions.Add("January");
-                BotOptions.Add("February");
-                BotOptions.Add("March");
-                BotOptions.Add("April");
-                BotOptions.Add("May");
-                BotOptions.Add("June");
-                BotOptions.Add("July");
-                BotOptions.Add("Augost");
-                BotOptions.Add("September");
+                BotMonthOptions.Add("January");
+                BotMonthOptions.Add("February");
+                BotMonthOptions.Add("March");
+                BotMonthOptions.Add("April");
+                BotMonthOptions.Add("May");
+                BotMonthOptions.Add("June");
+                BotMonthOptions.Add("July");
+                BotMonthOptions.Add("Augost");
+                BotMonthOptions.Add("September");
 
 
                 PromptDialog.Choice(context, 
