@@ -200,7 +200,7 @@ public static string parsearJSONInfoVuelo (JToken token){
             else
             {
                 
-                await context.PostAsync("Result");
+                //await context.PostAsync("Result");
 
                 try{
 
