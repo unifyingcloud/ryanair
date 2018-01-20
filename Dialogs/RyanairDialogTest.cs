@@ -17,6 +17,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
     {
         protected int count = 1;
 
+        
+
         public async Task StartAsync(IDialogContext context)
         {
             context.Wait(MessageReceivedAsync);
@@ -25,17 +27,64 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             var message = await argument;
+            List<string> BotOptions = new List<string>();
+                    
+            BotOptions.Add("PRG-Prague");
+            BotOptions.Add("SXF-Berlin Schönefeld");
+            BotOptions.Add("STN-London Stansted");
+            BotOptions.Add("TLS-Toulouse");
+            BotOptions.Add("MLA-Malta");
+            BotOptions.Add("CIA-Rome Ciampino");
+            BotOptions.Add("LPA-Gran Canaria");
+            BotOptions.Add("TFN-Tenerife North");
+            BotOptions.Add("BUD-Budapest");
+            BotOptions.Add("GLA-Glasgow");
+            BotOptions.Add("IBZ-Ibiza");
+            BotOptions.Add("BRI-Bari");
+            BotOptions.Add("KRK-Krakow");
+            BotOptions.Add("PMI-Mallorca");
+            BotOptions.Add("SCQ-Santiago");
+            BotOptions.Add("OPO-Porto");
+            BotOptions.Add("BLQ-Bologna");
+            BotOptions.Add("BGY-Milan Bergamo");
+            BotOptions.Add("BRU-Brussels");
+            BotOptions.Add("HAM-Hamburg");
+            BotOptions.Add("DUB-Dublin");
+            BotOptions.Add("PSA-Pisa");
+            BotOptions.Add("STN-London Stansted");
+            BotOptions.Add("FUE-Fuerteventura");
+            BotOptions.Add("STN-London Stansted");
+            BotOptions.Add("CAG-Cagliari");
+            BotOptions.Add("CIA-Rome Ciampino");
+            BotOptions.Add("PMI-Mallorca");
+            BotOptions.Add("EIN-Eindhoven");
+            BotOptions.Add("BLQ-Bologna");
+            BotOptions.Add("OTP-Bucharest");
+            BotOptions.Add("FEZ-Fez");
+            BotOptions.Add("RAK-Marrakesh");
+            BotOptions.Add("WRO-Wroclaw");
+            BotOptions.Add("WMI-Warsaw Modlin");
+            BotOptions.Add("MAN-Manchester");
+            BotOptions.Add("CIA-Rome Ciampino");
+            BotOptions.Add("STN-London Stansted");
+            BotOptions.Add("PMI-Mallorca");
+            BotOptions.Add("TLS-Toulouse");
+            BotOptions.Add("OPO-Porto");
+            BotOptions.Add("IBZ-Ibiza");
+            BotOptions.Add("FRA-Frankfurt International");
+            BotOptions.Add("PMI-Mallorca");
+            BotOptions.Add("BGY-Milan Bergamo");
+            BotOptions.Add("DUB-Dublin");
+            BotOptions.Add("LPA-Gran Canaria");
+            BotOptions.Add("ACE-Lanzarote");
+
+
+
+
 
             if (message.Text.ToUpper() == "FLIGHTS FROM HERE")
             {
-                List<string> BotOptions = new List<string>();
-                BotOptions.Add("OPO");
-                   BotOptions.Add("LON");  
-                    BotOptions.Add("PAR");
-                      BotOptions.Add("TST");  
-                  
-                  
-                BotOptions.Add("GAT");
+              
                 PromptDialog.Choice(context, 
                     AfterFlightsAsync,BotOptions,
                     "Your closest airport is Madrid, Barajas. Please choose your destination", 
@@ -43,7 +92,22 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     1, 
                     PromptStyle.Auto);
             }
-            
+             elseif (message.Text.ToUpper() == "ARRIVAL STATS")
+            {
+                List<string> BotOptions = new List<string>();
+                BotOptions.Add("OPO");
+                   BotOptions.Add("LON");  
+                    BotOptions.Add("PAR");
+                      BotOptions.Add("TST");  
+             
+                BotOptions.Add("GAT");
+                PromptDialog.Choice(context, 
+                    AfterFlightsAsync,BotOptions,
+                    "Your closest airport is Madrid, Barajas. Where is the flight coming from?", 
+                    "Didn't get that", 
+                    1, 
+                    PromptStyle.Auto);
+            }
             else
             {
                 
