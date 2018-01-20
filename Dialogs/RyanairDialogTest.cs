@@ -146,7 +146,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
-            String confirm = argument.ToString().Substring(0,3) = await argument;
+            resultValue = await argument;
+            String confirm = resultValue.ToString().Substring(0,3) ;
             if (confirm!="")
             {
                 this.count = 1;
