@@ -53,14 +53,23 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
                 JToken token = JToken.Parse(json);
                     
-                     
-                    await context.PostAsync("Your intent is :" + token.SelectToken("topScoringIntent.intent"));
+                string TopIntent =token.SelectToken("topScoringIntent.intent").ToString();
 
-                 await context.PostAsync(json);
+                string Entity1 =token.SelectToken("entities[0].entity").ToString();
+                string Entity2 =token.SelectToken("entities[1].entity").ToString();
+
+                
+                     
+                await context.PostAsync("Your intent is : "   TopIntent + " and your first Entity" + Entity1);
+
+                // await context.PostAsync(json);
                 //await context.PostAsync($"{this.count++}: You said {message.Text}");
                 context.Wait(MessageReceivedAsync);
             }
         }
+
+
+
 
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<bool> argument)
         {
