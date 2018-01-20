@@ -245,7 +245,7 @@ public static string parsearJSONInfoVuelo (JToken token){
             context.Wait(MessageReceivedAsync);
         }
 
-    private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
+    private async Task flightNumberAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
             var message = await result;
             
