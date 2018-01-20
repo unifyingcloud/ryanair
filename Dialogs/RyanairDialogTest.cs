@@ -176,7 +176,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 		Object[] fares = token.SelectToken("fares").ToArray();
 		for (int i = 0; i < fares.Length; i++){
 			
-			response += "El vuelo número " + i+1 + " va desde " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " hasta " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " y tiene un precio de " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString()+".\n\n";	
+			response += "Flight number " + i+1 + " goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString()+".\n\n";	
 			
 		}
 		
