@@ -94,13 +94,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             }
              elseif (message.Text.ToUpper() == "ARRIVAL STATS")
             {
-                List<string> BotOptions = new List<string>();
-                BotOptions.Add("OPO");
-                   BotOptions.Add("LON");  
-                    BotOptions.Add("PAR");
-                      BotOptions.Add("TST");  
-             
-                BotOptions.Add("GAT");
+                
                 PromptDialog.Choice(context, 
                     AfterFlightsAsync,BotOptions,
                     "Your closest airport is Madrid, Barajas. Where is the flight coming from?", 
