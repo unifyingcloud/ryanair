@@ -49,7 +49,12 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 {
                     json = sr.ReadToEnd();
                 }
-                    await context.PostAsync(json);
+
+
+                JToken token = JToken.Parse(json);
+                    
+                     
+                    await context.PostAsync("Your intent is :" + token.SelectToken("topScoringIntent.intent"));
 
                  await context.PostAsync(json);
                 //await context.PostAsync($"{this.count++}: You said {message.Text}");
@@ -76,10 +81,6 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 }
 
                             
-                JToken token = JToken.Parse(json);
-                    
-                    
-                    Console.WriteLine("Your intent is :" + token.SelectToken("topScoringIntent.intent"));
                     await context.PostAsync(json);
 
 
