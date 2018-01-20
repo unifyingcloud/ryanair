@@ -68,10 +68,14 @@ public static string parsearJSONInfoVuelo (JToken token){
 
     public static string parsearJSONVuelos (JToken token){
 		string response = "Vuelos:";
-		/*string status = token.SelectToken("flights[0].status.message").ToString();
+            try{ String status = token.SelectToken("flights[0].status.message").ToString();
 			
 		response += "El vuelo número " + token.SelectToken("flights[0].number").ToString() + " está " + status +".\n\n";	
-*/
+            }
+            catch(Exception ex){
+
+                response = ex.Message;
+            }
 		return response;
 	}
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
