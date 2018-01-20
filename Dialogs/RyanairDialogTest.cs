@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-
+using System.IO;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Builder.Dialogs;
 using System.Net.Http;
