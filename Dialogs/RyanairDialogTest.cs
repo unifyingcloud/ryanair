@@ -212,6 +212,7 @@ public static string parsearJSONInfoVuelo (JToken token){
                     json = sr.ReadToEnd();
                 }
 
+                /*
 
                 JToken token = JToken.Parse(json);
 
@@ -247,7 +248,7 @@ public static string parsearJSONInfoVuelo (JToken token){
                 //await context.PostAsync($"{this.count++}: You said {message.Text}");
               //  context.Wait(MessageReceivedAsync);
 
- 
+ */
             }
         }
 
