@@ -169,8 +169,8 @@ public static string parsearJSONInfoVuelo (JToken token){
             else
             {
                 
-
-
+                await context.PostAsync("Result");
+                /*
                 WebRequest request = WebRequest.Create("https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/1703b0e2-e00d-466e-8f99-710cfc850299?subscription-key=7cadeb2e13cf4cd3803cc832b6dfcd15&verbose=true&timezoneOffset=0&q" + message.Text);
                 WebResponse response = request.GetResponse();
 
@@ -213,6 +213,8 @@ public static string parsearJSONInfoVuelo (JToken token){
                 // await context.PostAsync(json);
                 //await context.PostAsync($"{this.count++}: You said {message.Text}");
                 context.Wait(MessageReceivedAsync);
+
+*/
             }
         }
 
