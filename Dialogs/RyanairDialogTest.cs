@@ -99,7 +99,7 @@ public static string parsearJSONInfoVuelo (JToken token){
             }
             catch(Exception ex){
 
-                response = ex.Message + token.ToString();
+                response = ex.Message ;
             }
 		return response;
 	}
