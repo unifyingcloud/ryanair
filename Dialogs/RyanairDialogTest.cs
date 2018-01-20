@@ -60,21 +60,46 @@ public static string parsearJSONInfoVuelo (JToken token){
 		string response = "";
 		string status = token.SelectToken("flights[0].status.message").ToString();
 			
-		response += "Flight number " + token.SelectToken("flights[0].number").ToString() + " is " + status +".\n\n";	
+		response += "Flight " + token.SelectToken("flights[0].number").ToString() + " is " + status +".\n\n";	
 
 		return response;
 	}
 	
+        public static string parsearJSON(JToken token)
+        {
+            string response = "";
+            Object[] fares = token.SelectToken("fares").ToArray();
+            for (int i = 0; i < fares.Length; i++)
+            {
+
+                response += "Flight number " + i + 1 + " goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
+
+            }
+
+            return response;
+        }
 
     public static string parsearJSONVuelos (JToken token){
-		string response = "Vuelos:";
-            try{ String status = token.SelectToken("flights[0].status.message").ToString();
+		string response = "";
+            try{ 
+
+                String status = "";//token.SelectToken("flights[0].status.message").ToString();
 			
-                response += "Flights are " + token.SelectToken("flights[0].number").ToString() + ":   " + status +".\n\n" + token.ToString();	
+                response += "Flight " + token.SelectToken("flights[0].number").ToString() + ":   " + status +".\n\n" + token.ToString();	
+
+                Object[] fares = token.SelectToken("fares").ToArray();
+                for (int i = 0; i < fares.Length; i++)
+                {
+
+                    response += "Flight number " + i + 1 + " goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
+
+                }
+
+
             }
             catch(Exception ex){
 
-                response = ex.Message;
+                response = ex.Message + token.ToString();
             }
 		return response;
 	}
@@ -231,18 +256,7 @@ public static string parsearJSONInfoVuelo (JToken token){
              await context.PostAsync("Movie search ");
             
         }
-	public static string parsearJSON (JToken token)
-    {
-		string response = "";
-		Object[] fares = token.SelectToken("fares").ToArray();
-		for (int i = 0; i < fares.Length; i++){
-			
-			response += "Flight number " + i+1 + " goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString()+".\n\n";	
-			
-		}
-		
-		return response;
-	}
+	
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
             var resultValue = await argument;
