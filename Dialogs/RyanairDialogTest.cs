@@ -45,7 +45,21 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             if (confirm)
             {
                 this.count = 1;
-                await context.PostAsync("Flight search.");
+               
+
+                WebRequest request = WebRequest.Create("http://apigateway.ryanair.com/pub/v1/farefinder/3/oneWayFares?departureAirportIataCode=MAD&outboundDepartureDateFrom=2018-01-22&outboundDepartureDateTo=2018-01-31&apikey=axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                WebResponse response = request.GetResponse();
+
+                string json;
+
+                using (var sr = new StreamReader(response.GetResponseStream()))
+                {
+                    json = sr.ReadToEnd();
+                }
+                    await context.PostAsync(json);
+
+
+
             }
             else
             {
