@@ -62,7 +62,12 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     switch (TopIntent)
                 {
                     case "tef.int.es_ES.mp.tv.search":
-                        Console.WriteLine("You want to search for a movie about " + Entity2);
+                        PromptDialog.Confirm(
+                        context,
+                        AfterMovieAsync,
+                        "I can see that you would like to see a movie, right?",
+                        "Didn't get that!",
+                        promptStyle: PromptStyle.Auto);
                         break;
                     case "":
                         Console.WriteLine("Case 2");
@@ -81,7 +86,12 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         }
 
 
+   public async Task AfterMovieAsync(IDialogContext context, IAwaitable<bool> argument)
+        {
 
+             await context.PostAsync("Movie search ");
+            
+        }
 
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<bool> argument)
         {
