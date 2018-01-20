@@ -238,13 +238,23 @@ public static string parsearJSONInfoVuelo (JToken token){
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
             var resultValue = await argument;
-            String confirm = resultValue.ToString().Substring(0,3) ;
-            if (confirm!="")
+            String confirmedDestination = resultValue.ToString().Substring(0,3) ;
+            if (confirmedDestination!="")
             {
               
-                  String resultJSON=  obtenerVuelos("MAD", confirm, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                String resultJSON=  obtenerVuelos("MAD", confirmedDestination, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
-	             await context.PostAsync(parsearJSON(token)); 
+
+                String resp = resultJSON;
+                try{
+
+                    resp=parsearJSON(token);
+                }
+                catch(Exception ex){
+                    resp = ex.Message;
+
+                }
+                await context.PostAsync(resp); 
 
         		
 
