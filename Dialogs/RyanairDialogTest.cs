@@ -70,7 +70,7 @@ public static string parsearJSONInfoVuelo (JToken token){
 		string response = "Vuelos:";
             try{ String status = token.SelectToken("flights[0].status.message").ToString();
 			
-                response += "Flights are " + token.SelectToken("flights[0].number").ToString() + ":   " + status +".\n\n" + flights;	
+                response += "Flights are " + token.SelectToken("flights[0].number").ToString() + ":   " + status +".\n\n" + token.ToString();	
             }
             catch(Exception ex){
 
