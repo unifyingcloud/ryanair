@@ -22,6 +22,23 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             context.Wait(MessageReceivedAsync);
         }
 
+        public static string obtenerVuelosBaratos(string departureAirportIataCode, string outboundDepartureDateFrom, string outboundDepartureDateTo, string apikey){
+            string response;
+            string url = "http://apigateway.ryanair.com/pub/v1/farefinder/3/oneWayFares?departureAirportIataCode=" + departureAirportIataCode + "&outboundDepartureDateFrom=" + outboundDepartureDateFrom + "&outboundDepartureDateTo=" + outboundDepartureDateTo + "&apikey=" + apikey;
+            
+            //Llamada a API Ryanair
+            WebRequest WebRequest = WebRequest.Create(url);
+            
+            WebResponse WebResponse = WebRequest.GetResponse();
+            
+            using (var sr = new StreamReader(WebResponse.GetResponseStream()))
+                    {
+                        response = sr.ReadToEnd();
+                    }
+            return response;
+        }
+        
+
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             var message = await argument;
@@ -143,32 +160,29 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
              await context.PostAsync("Movie search ");
             
         }
-
+	public static string parsearJSON (JToken token){
+		string response = "";
+		Object[] fares = token.SelectToken("fares").ToArray();
+		for (int i = 0; i < fares.Length; i++){
+			
+			response += "El vuelo número " + i + " va desde " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " hasta " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " y tiene un precio de " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString()+".\n\n";	
+			
+		}
+		
+		return response;
+	}
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
             var resultValue = await argument;
             String confirm = resultValue.ToString().Substring(0,3) ;
             if (confirm!="")
             {
-                this.count = 1;
-               
+              
+                String resultJSON= obtenerVuelosBaratos("MAD","2018-01-29", "2018-02-02", "axQgeITSziRuQSDAG765w1M3iXnkTAET"));
+                 JToken  token = JToken.Parse(resultJSON);
+	             await context.PostAsync(parsearJSON(token));
 
-                WebRequest request = WebRequest.Create("http://apigateway.ryanair.com/pub/v1/flightinfo/3/flights?departureAirportIataCode=MAD&arrivalAirportIataCode="+  confirm  +"&apikey=axQgeITSziRuQSDAG765w1M3iXnkTAET");
-                WebResponse response = request.GetResponse();
-
-                string json;
-
-                using (var sr = new StreamReader(response.GetResponseStream()))
-                {
-                    json = sr.ReadToEnd();
-                }
-
-                            
-                    await context.PostAsync(json);
-
-
-
-
+		 
             }
             else
             {
