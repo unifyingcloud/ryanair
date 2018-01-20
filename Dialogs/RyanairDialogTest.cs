@@ -178,9 +178,9 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             if (confirm!="")
             {
               
-              /*  String resultJSON= obtenerVuelosBaratos("MAD","2018-01-29", "2018-02-02", "axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                  String resultJSON= obtenerVuelosBaratos("MAD","2018-01-29", "2018-02-02", "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
-	             await context.PostAsync(parsearJSON(token));*/
+	             await context.PostAsync(parsearJSON(token)); 
 
 		 
             }
