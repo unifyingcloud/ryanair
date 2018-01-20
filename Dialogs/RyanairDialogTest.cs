@@ -238,8 +238,8 @@ public static string parsearJSONInfoVuelo (JToken token){
                         PromptStyle.Auto);
 
                         break;
-                    case "":
-                        Console.WriteLine("Case 2");
+                    case "None":
+                        Console.WriteLine("Are you interested in flying?");
                         break;
                     default:
                         Console.WriteLine("Default case");
