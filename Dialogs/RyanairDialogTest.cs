@@ -65,6 +65,15 @@ public static string parsearJSONInfoVuelo (JToken token){
 		return response;
 	}
 	
+
+    public static string parsearJSON (JToken token){
+		string response = "Vuelos:";
+		/*string status = token.SelectToken("flights[0].status.message").ToString();
+			
+		response += "El vuelo número " + token.SelectToken("flights[0].number").ToString() + " está " + status +".\n\n";	
+*/
+		return response;
+	}
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             var message = await argument;
@@ -232,11 +241,13 @@ public static string parsearJSONInfoVuelo (JToken token){
             if (confirm!="")
             {
               
-                  String resultJSON= obtenerVuelosBaratos("MAD","2018-01-29", "2018-02-02", "axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                  String resultJSON=  obtenerVuelos("MAD", confirm, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
 	             await context.PostAsync(parsearJSON(token)); 
 
-		 
+        		
+
+
             }
             else
             {
@@ -244,6 +255,25 @@ public static string parsearJSONInfoVuelo (JToken token){
             }
             context.Wait(MessageReceivedAsync);
         }
+
+
+
+
+	public static string obtenerVuelos(string departureAirportIataCode, string arrivalAirportIataCode, string apikey){
+		string response;
+		string url = "http://apigateway.ryanair.com/pub/v1/flightinfo/3/flights?departureAirportIataCode=" + departureAirportIataCode + "&arrivalAirportIataCode=" + arrivalAirportIataCode + "&apikey=" + apikey;
+		
+		//Llamada a API Ryanair
+		WebRequest WebRequest = WebRequest.Create(url);
+        
+		WebResponse WebResponse = WebRequest.GetResponse();
+		
+		using (var sr = new StreamReader(WebResponse.GetResponseStream()))
+                {
+                    response = sr.ReadToEnd();
+                }
+		return response;
+	}
 
     private async Task flightNumberAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
