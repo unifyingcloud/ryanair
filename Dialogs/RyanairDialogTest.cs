@@ -77,7 +77,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                         break;
                 }
                      
-                await context.PostAsync("Your intent is: "+   TopIntent + " and your entities: " + Entity1+ " " + Entity2);
+             //   await context.PostAsync("Your intent is: "+   TopIntent + " and your entities: " + Entity1+ " " + Entity2);
 
                 // await context.PostAsync(json);
                 //await context.PostAsync($"{this.count++}: You said {message.Text}");
