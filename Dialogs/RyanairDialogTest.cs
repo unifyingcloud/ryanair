@@ -26,14 +26,26 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         {
             var message = await argument;
 
-            if (message.Text == "Flights")
+            if (message.Text.ToUpper() == "FLIGHTS FROM HERE")
             {
                 List<string> BotOptions = new List<string>();
                 BotOptions.Add("OPO");
+                   BotOptions.Add("LON");  
+                    BotOptions.Add("PAR");
+                      BotOptions.Add("TST");  
+                    BotOptions.Add("TST");
+                      BotOptions.Add("OPO");  
+                    BotOptions.Add("OPO");
+                      BotOptions.Add("OPO");  
+                    BotOptions.Add("OPO");
+                      BotOptions.Add("OPO");  
+                    BotOptions.Add("OPO");
+                      BotOptions.Add("OPO");  
+                    BotOptions.Add("OPO");
                 BotOptions.Add("GAT");
                 PromptDialog.Choice(context, 
                     AfterFlightsAsync,BotOptions,
-                    "Please choose your destination", 
+                    "Your closest airport is Madrid, Please choose your destination", 
                     "Didn't get that", 
                     1, 
                     PromptStyle.Auto);
