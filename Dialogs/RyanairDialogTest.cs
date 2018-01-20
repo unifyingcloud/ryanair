@@ -60,7 +60,7 @@ public static string parsearJSONInfoVuelo (JToken token){
 		string response = "";
 		string status = token.SelectToken("flights[0].status.message").ToString();
 			
-		response += "El vuelo número " + token.SelectToken("flights[0].number").ToString() + " está " + status +".\n\n";	
+		response += "Flight number " + token.SelectToken("flights[0].number").ToString() + " is " + status +".\n\n";	
 
 		return response;
 	}
