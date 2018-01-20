@@ -191,13 +191,14 @@ public static string parsearJSONInfoVuelo (JToken token){
                                 
                     switch (TopIntent)
                 {
-                    case "tef.int.es_ES.mp.tv.search":
-                        PromptDialog.Confirm(
-                        context,
-                        AfterMovieAsync,
-                        "I can see that you would like to see a movie, right?",
-                        "Didn't get that!",
-                        promptStyle: PromptStyle.Auto);
+                    case "ry.sales.search":
+                            PromptDialog.Choice(context,
+                            AfterFlightsAsync, BotOptions,
+                            "Your closest airport is Madrid, Barajas. Please choose your destination",
+                            "Didn't get that",
+                            1,
+                            PromptStyle.Auto);
+                        
                         break;
                     case "":
                         Console.WriteLine("Case 2");
