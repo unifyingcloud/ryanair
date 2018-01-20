@@ -36,7 +36,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
            BotOptions.Add("MLA-Malta");
             BotOptions.Add("CIA-Rome Ciampino");
             BotOptions.Add("LPA-Gran Canaria");
-            BotOptions.Add("TFN-Tenerife North");
+          /*  BotOptions.Add("TFN-Tenerife North");
             BotOptions.Add("BUD-Budapest");
             BotOptions.Add("GLA-Glasgow");
             BotOptions.Add("IBZ-Ibiza");
@@ -76,7 +76,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             BotOptions.Add("BGY-Milan Bergamo");
             BotOptions.Add("DUB-Dublin");
             BotOptions.Add("LPA-Gran Canaria");
-            BotOptions.Add("ACE-Lanzarote"); 
+            BotOptions.Add("ACE-Lanzarote"); */
 
                 PromptDialog.Choice(context, 
                     AfterFlightsAsync,BotOptions,
