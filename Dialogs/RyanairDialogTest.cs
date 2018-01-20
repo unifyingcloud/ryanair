@@ -196,6 +196,12 @@ public static string parsearJSONInfoVuelo (JToken token){
 
                 context.Wait(this.flightNumberAsync);
                 
+            }else if (message.Text.ToUpper() == "HELP")
+            {
+                await context.PostAsync("If you need help go to https://www.ryanair.com");
+
+                context.Wait(this.flightNumberAsync);
+
             }
             else
             {
