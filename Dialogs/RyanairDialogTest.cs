@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Builder.Dialogs;
 using System.Net.Http;
-
+using System.Net;
 
 namespace Microsoft.Bot.Sample.SimpleEchoBot
 {
