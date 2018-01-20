@@ -45,7 +45,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 BotOptions.Add("GAT");
                 PromptDialog.Choice(context, 
                     AfterFlightsAsync,BotOptions,
-                    "Your closest airport is Madrid, Please choose your destination", 
+                    "Your closest airport is Madrid, Barajas. Please choose your destination", 
                     "Didn't get that", 
                     1, 
                     PromptStyle.Auto);
