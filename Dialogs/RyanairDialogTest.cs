@@ -55,10 +55,22 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     
                 string TopIntent =token.SelectToken("topScoringIntent.intent").ToString();
 
-                string Entity1 =token.SelectToken("entities[0].entity").ToString();
-                string Entity2 =token.SelectToken("entities[1].entity").ToString();
+                string Entity1 =token.SelectToken("entities[0].entity");
+                string Entity2 =token.SelectToken("entities[1].entity");
 
-                
+                                
+                    switch (TopIntent)
+                {
+                    case "tef.int.es_ES.mp.tv.search":
+                        Console.WriteLine("You want to search for a movie about " + Entity2);
+                        break;
+                    case "":
+                        Console.WriteLine("Case 2");
+                        break;
+                    default:
+                        Console.WriteLine("Default case");
+                        break;
+                }
                      
                 await context.PostAsync("Your intent is: "+   TopIntent + " and your entities: " + Entity1+ " " + Entity2);
 
