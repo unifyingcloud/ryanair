@@ -251,7 +251,10 @@ public static string parsearJSONInfoVuelo (JToken token){
             
 
              String res= obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
-              await context.PostAsync(res);
+
+              JToken token = JToken.Parse(json);
+
+              await context.PostAsync(parsearJSONInfoVuelo(token));
             
             
             }
