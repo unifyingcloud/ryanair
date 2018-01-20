@@ -32,7 +32,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 BotOptions.Add("OPO");
                 BotOptions.Add("GAT");
                 PromptDialog.Choice(context, 
-                    ChoiceSelectAsync,BotOptions,
+                    AfterFlightsAsync,BotOptions,
                     "Please choose your destination", 
                     "Didn't get that", 
                     1, 
