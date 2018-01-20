@@ -39,7 +39,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         }
         
 
-        public static string obtenerInfoVuelo(int number, string apikey){
+        public static string obtenerInfoVuelo(String number, String apikey){
 		string response;
 		string url = "http://apigateway.ryanair.com/pub/v1/flightinfo/3/flights?number=" + number + "&apikey=" + apikey;
 		
@@ -150,7 +150,7 @@ public static string parsearJSONInfoVuelo (JToken token){
                     "Didn't get that", 
                     1, 
                     PromptStyle.Auto);
-            }else if (message.Text.ToUpper() == "FLIGHTS STATUS")
+            }else if (message.Text.ToUpper() == "FLIGHT STATUS")
             {
                await context.PostAsync("Please type your flight number");
 
@@ -249,6 +249,8 @@ public static string parsearJSONInfoVuelo (JToken token){
         {
             var message = await result;
             
+
+              obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
               await context.PostAsync("Your flight is on time");
             
             
