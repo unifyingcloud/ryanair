@@ -15,9 +15,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
     [Serializable]
     public class RyanairTest : IDialog<object>
     {
-        protected int count = 1;
-
-        
+        protected int count = 1; 
 
         public async Task StartAsync(IDialogContext context)
         {
@@ -78,9 +76,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             BotOptions.Add("LPA-Gran Canaria");
             BotOptions.Add("ACE-Lanzarote"); 
 
-
-
-
+ 
 
             if (message.Text.ToUpper() == "FLIGHTS FROM HERE")
             {
