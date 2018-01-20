@@ -36,7 +36,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
            BotOptions.Add("MLA-Malta");
             BotOptions.Add("CIA-Rome Ciampino");
             BotOptions.Add("LPA-Gran Canaria");
-          /*  BotOptions.Add("TFN-Tenerife North");
+            BotOptions.Add("TFN-Tenerife North");
             BotOptions.Add("BUD-Budapest");
             BotOptions.Add("GLA-Glasgow");
             BotOptions.Add("IBZ-Ibiza");
@@ -45,7 +45,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             BotOptions.Add("PMI-Mallorca");
             BotOptions.Add("SCQ-Santiago");
             BotOptions.Add("OPO-Porto");
-            BotOptions.Add("BLQ-Bologna");
+          /*  BotOptions.Add("BLQ-Bologna");
             BotOptions.Add("BGY-Milan Bergamo");
             BotOptions.Add("BRU-Brussels");
             BotOptions.Add("HAM-Hamburg");
@@ -146,7 +146,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
-            var confirm = await argument;
+            string confirm.ToString().Substring(0,3) = await argument;
             if (confirm!="")
             {
                 this.count = 1;
