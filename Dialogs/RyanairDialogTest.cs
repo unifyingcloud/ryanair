@@ -33,15 +33,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                    BotOptions.Add("LON");  
                     BotOptions.Add("PAR");
                       BotOptions.Add("TST");  
-                    BotOptions.Add("TST");
-                      BotOptions.Add("OPO");  
-                    BotOptions.Add("OPO");
-                      BotOptions.Add("OPO");  
-                    BotOptions.Add("OPO");
-                      BotOptions.Add("OPO");  
-                    BotOptions.Add("OPO");
-                      BotOptions.Add("OPO");  
-                    BotOptions.Add("OPO");
+                  
+                  
                 BotOptions.Add("GAT");
                 PromptDialog.Choice(context, 
                     AfterFlightsAsync,BotOptions,
