@@ -100,7 +100,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
             var confirm = await argument;
-            if (confirm)
+            if (confirm!="")
             {
                 this.count = 1;
                
