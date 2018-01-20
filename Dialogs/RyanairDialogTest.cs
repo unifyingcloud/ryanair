@@ -267,7 +267,7 @@ public static string parsearJSONInfoVuelo (JToken token){
                 String resultJSON=  obtenerVuelos("MAD", confirmedDestination, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
 
-                String resp = resultJSON;
+                String resp = "";
                 try{
 
                     resp=parsearJSONVuelos(token);
