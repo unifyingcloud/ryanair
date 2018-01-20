@@ -1,4 +1,5 @@
-namespace LuisActions.Samples.Bot
+
+namespace Microsoft.Bot.Sample.SimpleEchoBot
 {
     using System;
     using System.Configuration;
@@ -12,8 +13,6 @@ namespace LuisActions.Samples.Bot
     using Samples.Models;
 
 
-namespace Microsoft.Bot.Sample.SimpleEchoBot
-{
     [Serializable]
     public class RootDialog : LuisActionDialog<object>
     {
@@ -86,4 +85,4 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             await context.PostAsync(reply);
         }
     }
-}}
+} 
