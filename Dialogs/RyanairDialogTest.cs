@@ -45,7 +45,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             BotOptions.Add("PMI-Mallorca");
             BotOptions.Add("SCQ-Santiago");
             BotOptions.Add("OPO-Porto");
-          /*  BotOptions.Add("BLQ-Bologna");
+          BotOptions.Add("BLQ-Bologna");
             BotOptions.Add("BGY-Milan Bergamo");
             BotOptions.Add("BRU-Brussels");
             BotOptions.Add("HAM-Hamburg");
@@ -57,7 +57,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             BotOptions.Add("CAG-Cagliari");
             BotOptions.Add("CIA-Rome Ciampino");
             BotOptions.Add("PMI-Mallorca");
-            BotOptions.Add("EIN-Eindhoven");
+          /*    BotOptions.Add("EIN-Eindhoven");
             BotOptions.Add("BLQ-Bologna");
             BotOptions.Add("OTP-Bucharest");
             BotOptions.Add("FEZ-Fez");
