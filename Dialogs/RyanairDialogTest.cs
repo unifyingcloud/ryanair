@@ -37,7 +37,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 
 
 
-                  WebRequest request = WebRequest.Create("https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/c22412bb-2bb6-48f0-aba6-52d4783853b5?subscription-key=7cadeb2e13cf4cd3803cc832b6dfcd15&verbose=true&timezoneOffset=0&q=" & message.Text);
+                  WebRequest request = WebRequest.Create("https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/c22412bb-2bb6-48f0-aba6-52d4783853b5?subscription-key=7cadeb2e13cf4cd3803cc832b6dfcd15&verbose=true&timezoneOffset=0&q=" + message.Text);
                 WebResponse response = request.GetResponse();
 
                 string json;
