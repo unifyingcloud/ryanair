@@ -27,12 +27,15 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
             if (message.Text == "Flights")
             {
-                PromptDialog.Confirm(
-                    context,
-                    AfterFlightsAsync,
-                    "Do you want to start looking for flights?",
-                    "Didn't get that!",
-                    promptStyle: PromptStyle.Auto);
+                List<string> BotOptions = new List<string>();
+                BotOptions.Add("OPO");
+                BotOptions.Add("GAT");
+                PromptDialog.Choice(context, 
+                    ChoiceSelectAsync,BotOptions,
+                    "Please choose your destination", 
+                    "Didn't get that", 
+                    1, 
+                    PromptStyle.Auto);
             }
             
             else
@@ -93,7 +96,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             
         }
 
-        public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<bool> argument)
+        public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
             var confirm = await argument;
             if (confirm)
@@ -101,7 +104,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 this.count = 1;
                
 
-                WebRequest request = WebRequest.Create("http://apigateway.ryanair.com/pub/v1/farefinder/3/oneWayFares?departureAirportIataCode=MAD&outboundDepartureDateFrom=2018-01-22&outboundDepartureDateTo=2018-01-31&apikey=axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                WebRequest request = WebRequest.Create("http://apigateway.ryanair.com/pub/v1/flightinfo/3/flights?departureAirportIataCode=MAD&arrivalAirportIataCode="+  confirm  +"&apikey=axQgeITSziRuQSDAG765w1M3iXnkTAET");
                 WebResponse response = request.GetResponse();
 
                 string json;
