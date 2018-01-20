@@ -92,7 +92,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     1, 
                     PromptStyle.Auto);
             }
-             elseif (message.Text.ToUpper() == "ARRIVAL STATS")
+             else if (message.Text.ToUpper() == "ARRIVAL STATS")
             {
                 
                 PromptDialog.Choice(context, 
