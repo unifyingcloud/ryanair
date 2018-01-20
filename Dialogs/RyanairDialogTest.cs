@@ -250,8 +250,8 @@ public static string parsearJSONInfoVuelo (JToken token){
             var message = await result;
             
 
-              obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
-              await context.PostAsync("Your flight is on time");
+             String res= obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
+              await context.PostAsync(res);
             
             
             }
