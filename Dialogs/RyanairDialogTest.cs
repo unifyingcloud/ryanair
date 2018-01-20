@@ -67,12 +67,12 @@ public static string parsearJSONInfoVuelo (JToken token){
 	
         public static string parsearJSON(JToken token)
         {
-            string response = "";
+            string response = "I found the following flights: ";
             Object[] fares = token.SelectToken("fares").ToArray();
-            for (int i = 0; i < fares.Length; i++)
+            for (int i = 0; i < 6; i++)
             {
 
-                response += "Flight number " + i + 1 + " goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
+                response += "From " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
 
             }
 
