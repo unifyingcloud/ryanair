@@ -184,12 +184,11 @@ public static string parsearJSONInfoVuelo (JToken token){
 
                 JToken token = JToken.Parse(json);
 
-                await context.PostAsync(json);
-                /*
-                 * 
+               // await context.PostAsync(json);
+                 
                 string TopIntent = token.SelectToken("topScoringIntent.intent").ToString();
-                string Entity1 =token.SelectToken("entities[0].entity").ToString();
-                string Entity2 =token.SelectToken("entities[1].entity").ToString();
+             //   string Entity1 =token.SelectToken("entities[0].entity").ToString();
+               // string Entity2 =token.SelectToken("entities[1].entity").ToString();
 
                                 
                     switch (TopIntent)
@@ -215,9 +214,9 @@ public static string parsearJSONInfoVuelo (JToken token){
 
                 // await context.PostAsync(json);
                 //await context.PostAsync($"{this.count++}: You said {message.Text}");
-                context.Wait(MessageReceivedAsync);
+              //  context.Wait(MessageReceivedAsync);
 
-*/
+ 
             }
         }
 
