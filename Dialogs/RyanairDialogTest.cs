@@ -34,7 +34,22 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             
             else
             {
-                await context.PostAsync($"{this.count++}: You said {message.Text}");
+                
+
+
+                  WebRequest request = WebRequest.Create("https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/c22412bb-2bb6-48f0-aba6-52d4783853b5?subscription-key=7cadeb2e13cf4cd3803cc832b6dfcd15&verbose=true&timezoneOffset=0&q=" & message.Text);
+                WebResponse response = request.GetResponse();
+
+                string json;
+
+                using (var sr = new StreamReader(response.GetResponseStream()))
+                {
+                    json = sr.ReadToEnd();
+                }
+                    await context.PostAsync(json);
+
+                 await context.PostAsync(json);
+                //await context.PostAsync($"{this.count++}: You said {message.Text}");
                 context.Wait(MessageReceivedAsync);
             }
         }
