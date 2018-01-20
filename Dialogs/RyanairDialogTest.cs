@@ -174,7 +174,7 @@ public static string parsearJSONInfoVuelo (JToken token){
                   WebRequest request = WebRequest.Create("https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/c22412bb-2bb6-48f0-aba6-52d4783853b5?subscription-key=7cadeb2e13cf4cd3803cc832b6dfcd15&verbose=true&timezoneOffset=0&q=" + message.Text);
                 WebResponse response = request.GetResponse();
 
-                string json;
+                String json;
 
                 using (var sr = new StreamReader(response.GetResponseStream()))
                 {
@@ -280,7 +280,7 @@ public static string parsearJSONInfoVuelo (JToken token){
             var message = await result;
             
 
-             String res= obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
+             String json= obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
 
               JToken token = JToken.Parse(json);
 
