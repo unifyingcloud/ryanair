@@ -150,6 +150,10 @@ public static string parsearJSONInfoVuelo (JToken token){
                     "Didn't get that", 
                     1, 
                     PromptStyle.Auto);
+            }else if (message.Text.ToUpper() == "FLIGHTS STATUS")
+            {
+             
+                 context.await("Please type your flight number");
             }
             else
             {
