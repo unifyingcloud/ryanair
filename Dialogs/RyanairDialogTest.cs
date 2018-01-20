@@ -43,9 +43,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         {
             var message = await argument;
 
-            if (message.Text.ToUpper() == "FLIGHTS FROM HERE")
-            {
-                List<string> BotOptions = new List<string>();
+               List<string> BotOptions = new List<string>();
              BotOptions.Add("PRG-Prague");
             BotOptions.Add("SXF-Berlin Schönefeld");
             BotOptions.Add("STN-London Stansted");
@@ -95,6 +93,20 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             BotOptions.Add("LPA-Gran Canaria");
             BotOptions.Add("ACE-Lanzarote"); */
 
+
+            if (message.Text.ToUpper() == "CHEAP FLIGHTS FROM HERE")
+            {
+             
+                PromptDialog.Choice(context, 
+                    AfterCheapFlightsAsync,BotOptions,
+                    "Your closest airport is Madrid, Barajas. Please choose your destination", 
+                    "Didn't get that", 
+                    1, 
+                    PromptStyle.Auto);
+            }
+             else if (message.Text.ToUpper() == "FLIGHTS FROM HERE")
+            {
+             
                 PromptDialog.Choice(context, 
                     AfterFlightsAsync,BotOptions,
                     "Your closest airport is Madrid, Barajas. Please choose your destination", 
@@ -102,7 +114,6 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     1, 
                     PromptStyle.Auto);
             }
-            
             else
             {
                 
@@ -165,13 +176,34 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 		Object[] fares = token.SelectToken("fares").ToArray();
 		for (int i = 0; i < fares.Length; i++){
 			
-			response += "El vuelo número " + i + " va desde " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " hasta " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " y tiene un precio de " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString()+".\n\n";	
+			response += "El vuelo número " + i+1 + " va desde " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " hasta " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " y tiene un precio de " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString()+".\n\n";	
 			
 		}
 		
 		return response;
 	}
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
+        {
+            var resultValue = await argument;
+            String confirm = resultValue.ToString().Substring(0,3) ;
+            if (confirm!="")
+            {
+              
+                  String resultJSON= obtenerVuelosBaratos("MAD","2018-01-29", "2018-02-02", "axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                 JToken  token = JToken.Parse(resultJSON);
+	             await context.PostAsync(parsearJSON(token)); 
+
+		 
+            }
+            else
+            {
+                await context.PostAsync("Did not search for flights.");
+            }
+            context.Wait(MessageReceivedAsync);
+        }
+
+
+    public async Task AfterCheapFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
             var resultValue = await argument;
             String confirm = resultValue.ToString().Substring(0,3) ;
