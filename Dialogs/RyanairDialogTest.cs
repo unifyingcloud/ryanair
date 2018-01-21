@@ -530,8 +530,12 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     break;
                 case "December":
                     DateFrom = "2018-12-01";
-                    DateTo = "2019-01ko" +
-                        "\tw`-01";
+                    DateTo = "2019-01-01";
+                    break;
+                 default:
+                    DateFrom = "2018-12-01";
+                    DateTo = "2019-01-01";
+                    break;
             }
 
 
@@ -540,7 +544,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 String resultJSON="";
                 try{   
 
-                    resultJSON= obtenerVuelosBaratos("MAD",DateFrom, DateTo, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                    resultJSON  = obtenerVuelosBaratos("MAD",DateFrom, DateTo, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
 
                 var messageReturn = context.MakeMessage();
