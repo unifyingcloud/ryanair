@@ -101,8 +101,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 Title = "Flight info",
                 Subtitle = "Click below to see your flight info",
                 Text = "",
-                Images = new List<CardImage> { new CardImage("http://www.airlinequality.com/wp-content/uploads/2015/07/RYANAIR_JET.jpg"), new CardImage("http://cdn.bootsnall.com/locations/Europe-thumb.jpg") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book", value: "https://www.flightstats.com/v2/flight-tracker/" + token) }
+                Images = new List<CardImage> { new CardImage("http://www.airlinequality.com/wp-content/uploads/2015/07/RYANAIR_JET.jpg") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Your Flight", value: "https://www.flightstats.com/v2/flight-tracker/" + token) }
             };
 
             return heroCard.ToAttachment();
@@ -445,10 +445,14 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
               JToken token = JToken.Parse(json);*/
              
+
+
+            //await context.PostAsync(message.Text);
+
                   var messageReturn = context.MakeMessage();
 
             var attachment = GetHeroCard();
-            messageReturn.Attachments.Add(parsearJSONInfoVuelo(message.ToString()));
+            messageReturn.Attachments.Add(parsearJSONInfoVuelo(message.Text));
 
             await context.PostAsync(messageReturn);
 
