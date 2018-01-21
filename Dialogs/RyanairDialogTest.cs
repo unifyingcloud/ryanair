@@ -60,8 +60,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 Title = "Search results",
                 Subtitle = "These are your selected flights",
                 Text = "Click on each card to book a flight.",
-                Images = new List<CardImage> { new CardImage("https://i.gocollette.com/img/destination-page/europe/europe-continent/europe-ms3.jpg?h=720&w=1280&la=en") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book a flight", value: "https://ryanair.com") }
+                Images = new List<CardImage> { new CardImage("https://i.gocollette.com/img/destination-page/europe/europe-continent/europe-ms3.jpg?h=720&w=1280&la=en"),new CardImage("http://cdn.bootsnall.com/locations/Europe-thumb.jpg") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book", value: "https://ryanair.com"), new CardAction(ActionTypes.OpenUrl, "Book", value: "https://ryanair.com") }
             };
 
             return heroCard.ToAttachment();
