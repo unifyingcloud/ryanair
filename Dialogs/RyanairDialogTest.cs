@@ -67,7 +67,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             return heroCard.ToAttachment();
         }
 
-       
+
 
 
         public static string obtenerInfoVuelo(String number, String apikey){
@@ -87,13 +87,25 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 	}
 
 
-public static string parsearJSONInfoVuelo (JToken token){
-		string response = "";
+        public static Attachment parsearJSONInfoVuelo (String token){
+		/*string response = "";
 		string status = token.SelectToken("flights[0].status.message").ToString();
 			
 		response += "Flight " + token.SelectToken("flights[0].number").ToString() + " is " + status +".\n\n";	
 
-		return response;
+		return response;*/
+
+
+            var heroCard = new HeroCard
+            {
+                Title = "Flight info",
+                Subtitle = "Click below to see your flight info",
+                Text = "",
+                Images = new List<CardImage> { new CardImage("http://www.airlinequality.com/wp-content/uploads/2015/07/RYANAIR_JET.jpg"), new CardImage("http://cdn.bootsnall.com/locations/Europe-thumb.jpg") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book", value: "https://m.ryanair.com/") }
+            };
+
+            return heroCard.ToAttachment();
 	}
 	
         public static Attachment parsearJSON(JToken token)
@@ -237,6 +249,10 @@ public static string parsearJSONInfoVuelo (JToken token){
                await context.PostAsync("Please type your flight number");
 
                 context.Wait(this.flightNumberAsync);
+
+
+                
+
                 
             }else if (message.Text.ToUpper() == "HELP")
             {
@@ -331,8 +347,10 @@ public static string parsearJSONInfoVuelo (JToken token){
                   
                         case "ry.arrival.stats":
 
-// 
-                            await context.PostAsync("Great news, your flight is on time!");
+
+                            await context.PostAsync("Please type your flight number");
+
+                            context.Wait(this.flightNumberAsync); 
 
                             break;
                         case "None":
@@ -423,11 +441,18 @@ public static string parsearJSONInfoVuelo (JToken token){
             var message = await result;
             
 
-             String json= obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
+          /*   String json= obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
 
-              JToken token = JToken.Parse(json);
+              JToken token = JToken.Parse(json);*/
+             
+                  var messageReturn = context.MakeMessage();
 
-              await context.PostAsync(parsearJSONInfoVuelo(token));
+            var attachment = GetHeroCard();
+            messageReturn.Attachments.Add(parsearJSONInfoVuelo(message.ToString()));
+
+            await context.PostAsync(messageReturn);
+
+
             
             
             }
