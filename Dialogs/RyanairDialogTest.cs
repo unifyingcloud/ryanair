@@ -102,7 +102,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 Subtitle = "Click below to see your flight info",
                 Text = "",
                 Images = new List<CardImage> { new CardImage("http://www.airlinequality.com/wp-content/uploads/2015/07/RYANAIR_JET.jpg") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Your Flight", value: "https://www.flightstats.com/v2/flight-tracker/" + token) }
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Your Flight", value: "https://www.flightstats.com/v2/flight-tracker/FR/" + token) }
             };
 
             return heroCard.ToAttachment();
