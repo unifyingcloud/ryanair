@@ -328,7 +328,15 @@ public static string parsearJSONInfoVuelo (JToken token){
                         PromptStyle.Auto);
 
                         break;
-                    case "None":
+                  
+                        case "ry.arrival.stats":
+
+                            await context.PostAsync("Please type your flight number");
+
+                            context.Wait(this.flightNumberAsync);
+
+                            break;
+                        case "None":
                         Console.WriteLine("Are you interested in flying?");
                         break;
                     default:
