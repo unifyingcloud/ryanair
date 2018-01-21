@@ -67,6 +67,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             return heroCard.ToAttachment();
         }
 
+       
+
 
         public static string obtenerInfoVuelo(String number, String apikey){
 		string response;
@@ -94,18 +96,28 @@ public static string parsearJSONInfoVuelo (JToken token){
 		return response;
 	}
 	
-        public static string parsearJSON(JToken token)
+        public static Attachment parsearJSON(JToken token)
         {
-            string response = "I found the following flights: ";
+            var heroCard = new HeroCard
+            {
+                Title = "Search results",
+                Subtitle = "These are your selected flights",
+                Text = "Click on each card to book a flight.",
+                Images = new List<CardImage> { new CardImage("https://i.gocollette.com/img/destination-page/europe/europe-continent/europe-ms3.jpg?h=720&w=1280&la=en"), new CardImage("http://cdn.bootsnall.com/locations/Europe-thumb.jpg") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book", value: "https://ryanair.com") }
+            };
+
+           
             Object[] fares = token.SelectToken("fares").ToArray();
             for (int i = 0; i < 6; i++)
             {
 
-                response += "From " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
+                heroCard.Buttons.Add(new CardAction(ActionTypes.OpenUrl, "Book", value: "https://ryanair.com"));
+               // response += "From " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
 
             }
 
-            return response;
+            return  heroCard.ToAttachment();
         }
 
     public static string parsearJSONVuelos (JToken token){
@@ -461,8 +473,14 @@ public static string parsearJSONInfoVuelo (JToken token){
               
                 String resultJSON= obtenerVuelosBaratos("MAD",DateFrom, DateTo, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
-	             await context.PostAsync(parsearJSON(token)); 
 
+                var messageReturn = context.MakeMessage();
+
+                var attachment = parsearJSON(token);
+                messageReturn.Attachments.Add(attachment);
+
+                await context.PostAsync(messageReturn);
+                 
 		 
             }
             else
@@ -470,7 +488,15 @@ public static string parsearJSONInfoVuelo (JToken token){
                 await context.PostAsync("Did not search for flights.");
             }
             context.Wait(MessageReceivedAsync);
+        
+        
+        
+        
+        
         }
 
+         
     }
+
+   
 }
