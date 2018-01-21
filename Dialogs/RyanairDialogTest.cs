@@ -198,9 +198,16 @@ public static string parsearJSONInfoVuelo (JToken token){
                 
             }else if (message.Text.ToUpper() == "HELP")
             {
-                await context.PostAsync("If you need help go to https://www.ryanair.com");
+                await context.PostAsync("If you need help go to https://www.ryanair.com/gb/en/useful-info/help-centre");
 
               //  context.Wait(this.flightNumberAsync);
+
+            }
+            else if (message.Text.ToUpper() == "BAGGAGE HELP")
+            {
+                await context.PostAsync("If you need help go to https://www.ryanair.com/gb/en/useful-info/help-centre/faq-overview/Baggage/What-cabin-baggage-can-I-carry");
+
+                //  context.Wait(this.flightNumberAsync);
 
             }
             else
