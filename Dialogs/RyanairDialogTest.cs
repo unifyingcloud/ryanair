@@ -111,10 +111,11 @@ public static string parsearJSONInfoVuelo (JToken token){
             Object[] fares = token.SelectToken("fares").ToArray();
             for (int i = 0; i < 6; i++)
             {
-
-                heroCard.Buttons.Add(new CardAction(ActionTypes.OpenUrl, "Book", value: "https://ryanair.com"));
+                try{
+                heroCard.Buttons.Add(new CardAction(ActionTypes.OpenUrl, token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + "" + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() , value: "https://ryanair.com"));
                // response += "From " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
-
+                }
+                catch(Exception ex){}
             }
 
             return  heroCard.ToAttachment();
