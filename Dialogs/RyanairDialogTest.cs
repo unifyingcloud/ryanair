@@ -537,8 +537,10 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
             if (confirm!="")
             {
-              
-                String resultJSON= obtenerVuelosBaratos("MAD",DateFrom, DateTo, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
+                String resultJSON="";
+                try{   
+
+                    resultJSON= obtenerVuelosBaratos("MAD",DateFrom, DateTo, "axQgeITSziRuQSDAG765w1M3iXnkTAET");
                  JToken  token = JToken.Parse(resultJSON);
 
                 var messageReturn = context.MakeMessage();
@@ -548,7 +550,13 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
                 await context.PostAsync(messageReturn);
                  
-		 
+                }
+
+                catch(Exception ex){
+                    await context.PostAsync(ex.Message + " " + resultJSON);
+                }
+
+
             }
             else
             {
