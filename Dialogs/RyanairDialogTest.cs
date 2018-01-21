@@ -224,7 +224,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 BotMonthOptions.Add("May");
                 BotMonthOptions.Add("June");
                 BotMonthOptions.Add("July");
-                BotMonthOptions.Add("Augost");
+                BotMonthOptions.Add("August");
                 BotMonthOptions.Add("September");
 
 
@@ -233,6 +233,30 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     "Your closest airport is Madrid, Barajas. Please select a Month when you want to fly", 
                     "Didn't get that", 
                     1, 
+                    PromptStyle.Auto);
+            }
+            if (message.Text.ToUpper() == ":)")
+            {
+                List<string> BotMonthOptions = new List<string>();
+                BotMonthOptions.Add("January");
+                BotMonthOptions.Add("February");
+                BotMonthOptions.Add("March");
+                BotMonthOptions.Add("April");
+                BotMonthOptions.Add("May");
+                BotMonthOptions.Add("June");
+                BotMonthOptions.Add("July");
+                BotMonthOptions.Add("August");
+                BotMonthOptions.Add("September");
+
+                BotMonthOptions.Add("October");
+                BotMonthOptions.Add("November");
+                BotMonthOptions.Add("December");
+
+                PromptDialog.Choice(context,
+                                    AfterCheapFlightsAsync, BotMonthOptions,
+                    "Your closest airport is Madrid, Barajas. Please select a Month when you want to fly",
+                    "Didn't get that",
+                    1,
                     PromptStyle.Auto);
             }
              else if (message.Text.ToUpper() == "FLIGHTS FROM HERE")
