@@ -47,7 +47,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 Subtitle = "Follow the link to obtain information about baggage help",
                 Text = "Checked baggage fees are fees due on purchased checked bags.",
                 Images = new List<CardImage> { new CardImage("https://cdn-03.independent.ie/incoming/article35396046.ece/5653d/AUTOCROP/w620/5%20NEWS%20Ryanair%20bag%20te.jpg") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Go to help", value: "https://www.ryanair.com/gb/en/useful-info/help-centre/faq-overview/Baggage#0-0") }
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Open Q&A", value: "https://www.ryanair.com/gb/en/useful-info/help-centre/faq-overview/Baggage#0-0") }
             };
 
             return heroCard.ToAttachment();
@@ -214,14 +214,19 @@ public static string parsearJSONInfoVuelo (JToken token){
                 
             }else if (message.Text.ToUpper() == "HELP")
             {
-                await context.PostAsync("If you need help go to https://www.ryanair.com/gb/en/useful-info/help-centre");
+                var messageReturn = context.MakeMessage();
+
+                var attachment = GetThumbnailCard();
+                messageReturn.Attachments.Add(attachment);
+
+                await context.PostAsync(messageReturn);
 
               //  context.Wait(this.flightNumberAsync);
 
             }
             else if (message.Text.ToUpper() == "BAGGAGE HELP")
             {
-                await context.PostAsync("If you need help go to https://www.ryanair.com/gb/en/useful-info/help-centre/faq-overview/Baggage/What-cabin-baggage-can-I-carry");
+              //  await context.PostAsync("If you need help go to https://www.ryanair.com/gb/en/useful-info/help-centre/faq-overview/Baggage/What-cabin-baggage-can-I-carry");
 
 
                  var messageReturn = context.MakeMessage();
