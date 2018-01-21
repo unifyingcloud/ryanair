@@ -331,9 +331,8 @@ public static string parsearJSONInfoVuelo (JToken token){
                   
                         case "ry.arrival.stats":
 
-                            await context.PostAsync("Please type your flight number");
-
-                            context.Wait(this.flightNumberAsync);
+// 
+                            await context.PostAsync("Great news, your flight is on time!");
 
                             break;
                         case "None":
