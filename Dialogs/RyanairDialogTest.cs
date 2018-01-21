@@ -490,33 +490,48 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     break;
                 case "February":
                     DateFrom = "2018-02-01";
-                    DateTo = "2018-02-31";
+                    DateTo = "2018-03-01";
                     break;
                 case "March":
                     DateFrom = "2018-03-01";
-                    DateTo = "2018-03-31";
+                    DateTo = "2018-04-01";
                     break;
                 case "April":
                     DateFrom = "2018-04-01";
-                    DateTo = "2018-04-31";
+                    DateTo = "2018-05-01";
                     break;
                 case "May":
                     DateFrom = "2018-05-01";
-                    DateTo = "2018-05-31";
+                    DateTo = "2018-06-01";
                     break;
                 case "June":
                     DateFrom = "2018-06-01";
-                    DateTo = "2018-06-31";
+                    DateTo = "2018-07-01";
                     break;
                 case "July":
                     DateFrom = "2018-07-01";
-                    DateTo = "2018-07-31";
+                    DateTo = "2018-07-08";
                     break;
-                case "Augost":
+                case "August":
                     DateFrom = "2018-08-01";
-                    DateTo = "2018-08-31";
+                    DateTo = "2018-09-01";
                     break;
-
+                case "September":
+                    DateFrom = "2018-09-01";
+                    DateTo = "2018-10-01";
+                    break;
+                case "October":
+                    DateFrom = "2018-10-01";
+                    DateTo = "2018-11-01";
+                    break;
+                case "November":
+                    DateFrom = "2018-11-01";
+                    DateTo = "2018-12-01";
+                    break;
+                case "December":
+                    DateFrom = "2018-12-01";
+                    DateTo = "2019-01ko" +
+                        "\tw`-01";
             }
 
 
