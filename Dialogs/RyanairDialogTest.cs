@@ -439,15 +439,6 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
     private async Task flightNumberAsync(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
             var message = await result;
-            
-
-          /*   String json= obtenerInfoVuelo(message.ToString(),"axQgeITSziRuQSDAG765w1M3iXnkTAET");
-
-              JToken token = JToken.Parse(json);*/
-             
-
-
-            //await context.PostAsync(message.Text);
 
                   var messageReturn = context.MakeMessage();
 
@@ -455,8 +446,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             messageReturn.Attachments.Add(parsearJSONInfoVuelo(message.Text));
 
             await context.PostAsync(messageReturn);
-
-
+            context.Done<string>(null);
+           
             
             
             }
