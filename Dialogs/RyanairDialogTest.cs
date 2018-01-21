@@ -61,7 +61,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 Subtitle = "These are your selected flights",
                 Text = "Click on each card to book a flight.",
                 Images = new List<CardImage> { new CardImage("https://i.gocollette.com/img/destination-page/europe/europe-continent/europe-ms3.jpg?h=720&w=1280&la=en"),new CardImage("http://cdn.bootsnall.com/locations/Europe-thumb.jpg") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book", value: "https://ryanair.com") }
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book", value: "https://m.ryanair.com/") }
             };
 
             return heroCard.ToAttachment();
@@ -109,7 +109,7 @@ public static string parsearJSONInfoVuelo (JToken token){
 
            
             Object[] fares = token.SelectToken("fares").ToArray();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 10; i++)
             {
                 try{
                     heroCard.Buttons.Add(new CardAction(ActionTypes.OpenUrl, token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + ": " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + " " + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString(), value: "https://ryanair.com"));
