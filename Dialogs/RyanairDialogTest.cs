@@ -200,7 +200,7 @@ public static string parsearJSONInfoVuelo (JToken token){
             {
                 await context.PostAsync("If you need help go to https://www.ryanair.com");
 
-                context.Wait(this.flightNumberAsync);
+              //  context.Wait(this.flightNumberAsync);
 
             }
             else
