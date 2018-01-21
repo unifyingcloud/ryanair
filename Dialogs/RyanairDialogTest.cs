@@ -53,6 +53,19 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             return heroCard.ToAttachment();
         }
 
+        private static Attachment GetHeroCard()
+        {
+            var heroCard = new HeroCard
+            {
+                Title = "Search results",
+                Subtitle = "These are your selected flights",
+                Text = "Click on each card to book a flight.",
+                Images = new List<CardImage> { new CardImage("https://i.gocollette.com/img/destination-page/europe/europe-continent/europe-ms3.jpg?h=720&w=1280&la=en") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book a flight", value: "https://ryanair.com") }
+            };
+
+            return heroCard.ToAttachment();
+        }
 
 
         public static string obtenerInfoVuelo(String number, String apikey){
@@ -241,6 +254,26 @@ public static string parsearJSONInfoVuelo (JToken token){
                 //  context.Wait(this.flightNumberAsync);
 
             }
+            else if (message.Text.ToUpper() == "BOOK")
+            {
+                //  await context.PostAsync("If you need help go to https://www.ryanair.com/gb/en/useful-info/help-centre/faq-overview/Baggage/What-cabin-baggage-can-I-carry");
+
+
+                var messageReturn = context.MakeMessage();
+
+                var attachment = GetHeroCard();
+                messageReturn.Attachments.Add(attachment);
+
+                await context.PostAsync(messageReturn);
+
+                // context.Wait(this.MessageReceivedAsync);
+
+                //  context.Wait(this.flightNumberAsync);
+
+            }
+
+
+ 
             else
             {
                 
