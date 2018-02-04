@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Bot.Connector;
@@ -91,7 +91,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 		/*string response = "";
 		string status = token.SelectToken("flights[0].status.message").ToString();
 			
-		response += "Flight " + token.SelectToken("flights[0].number").ToString() + " is " + status +".\n\n";	
+		response += "Flight " + token.SelectToken("flights[0].number").ToString() + " is " + status +".nn";	
 
 		return response;*/
 
@@ -125,7 +125,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             {
                 try{
                     heroCard.Buttons.Add(new CardAction(ActionTypes.OpenUrl, token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + ": " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + " " + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString(), value: "https://ryanair.com"));
-               // response += "From " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
+               // response += "From " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".nn";
                 }
                 catch(Exception ex){}
             }
@@ -141,13 +141,13 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
             /*    String status = "";//token.SelectToken("flights[0].status.message").ToString();
 			
-               // response += "Flight " + token.SelectToken("flights[0].number").ToString() + ":   " + status +".\n\n" + token.ToString();	
+               // response += "Flight " + token.SelectToken("flights[0].number").ToString() + ":   " + status +".nn" + token.ToString();	
 
                 Object[] fares = token.SelectToken("fares").ToArray();
                 for (int i = 0; i < fares.Length; i++)
                 {
 
-                    response += "Flight number " + token.SelectToken("flights["+ i +"].number")  ;// goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".\n\n";
+                    response += "Flight number " + token.SelectToken("flights["+ i +"].number")  ;// goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".nn";
 
                 }*/
 
@@ -334,7 +334,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
                 try{
 
-                    WebRequest request = WebRequest.Create("https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/1703b0e2-e00d-466e-8f99-710cfc850299?subscription-key=7cadeb2e13cf4cd3803cc832b6dfcd15&verbose=true&timezoneOffset=0&q=" + message.Text);
+                    WebRequest request = WebRequest.Create("https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/08ac4c18-40c9-4fee-a606-98e882e4e15e?subscription-key=1d4fc55c3a4a4402b6647f2f0db35bec&verbose=true&timezoneOffset=0&q=" + message.Text);
                 WebResponse response = request.GetResponse();
 
 
