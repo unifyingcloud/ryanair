@@ -61,7 +61,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 Subtitle = "These are your selected flights",
                 Text = "Click on each card to book a flight.",
                 Images = new List<CardImage> { new CardImage("https://i.gocollette.com/img/destination-page/europe/europe-continent/europe-ms3.jpg?h=720&w=1280&la=en"),new CardImage("http://cdn.bootsnall.com/locations/Europe-thumb.jpg") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book", value: "https://m.ryanair.com/") }
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Book", value: "https://www.ryanair.com/gb/en/booking/home") }
             };
 
             return heroCard.ToAttachment();
@@ -124,7 +124,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             for (int i = 0; i < 10; i++)
             {
                 try{
-                    heroCard.Buttons.Add(new CardAction(ActionTypes.OpenUrl, token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + ": " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + " " + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString(), value: "https://ryanair.com"));
+                    heroCard.Buttons.Add(new CardAction(ActionTypes.OpenUrl, token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + ": " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + " " + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString(), value: "https://www.ryanair.com/gb/en/booking/home"));
                // response += "From " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".nn";
                 }
                 catch(Exception ex){}
