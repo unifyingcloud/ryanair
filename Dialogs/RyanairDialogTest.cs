@@ -278,10 +278,10 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 
 
                 
-            }else if (message.Text.ToUpper() == "HELLO")
+            }else if (message.Text.ToUpper() == "HELLO" || message.Text.ToUpper() == "HI" || message.Text.ToUpper() == "HOLA" )
             {
                 
-                await context.PostAsync("Hello, my name is Ryabot and I can help you with things like your flight status. Type a smily face to get cheap flights from your city!");
+                await context.PostAsync("Hello, how can I can help you? You can type -whats my flight status? or.. Type a smily face to get cheap flights from your city!... Type 'Flights from here to search for flights... or Type help if you want to know about your baggage info' ");
 
                 //  context.Wait(this.flightNumberAsync);
 
