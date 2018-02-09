@@ -238,7 +238,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             if (message.Text.ToUpper() == ":)")
             {
                 List<string> BotMonthOptions = new List<string>();
-                BotMonthOptions.Add("January");
+                //BotMonthOptions.Add("January");
                 BotMonthOptions.Add("February");
                 BotMonthOptions.Add("March");
                 BotMonthOptions.Add("April");
@@ -255,8 +255,8 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 PromptDialog.Choice(context,
                                     AfterCheapFlightsAsync, BotMonthOptions,
                     "Your closest airport is Madrid, Barajas. Please select a Month when you want to fly",
-                    "Didn't get that",
-                    1,
+                    "What month would you like to fly",
+                    3,
                     PromptStyle.Auto);
             }
              else if (message.Text.ToUpper() == "FLIGHTS FROM HERE")
@@ -332,6 +332,9 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 
                 //await context.PostAsync("Result");
 
+
+                String json="";
+
                 try{
 
                     WebRequest request = WebRequest.Create("https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/08ac4c18-40c9-4fee-a606-98e882e4e15e?subscription-key=1d4fc55c3a4a4402b6647f2f0db35bec&verbose=true&timezoneOffset=0&q=" + message.Text);
@@ -340,7 +343,6 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
 
 
-                String json;
 
                 using (var sr = new StreamReader(response.GetResponseStream()))
                 {
@@ -388,7 +390,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 }
                 catch (Exception ex)
                 {
-                    await context.PostAsync("Can you repeat that? I found an issue with LUIS: " + ex.Message);
+                    await context.PostAsync("Can you repeat that? I found an issue with LUIS: " + ex.Message +json  );
 
                 }
                      
