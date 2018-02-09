@@ -133,6 +133,34 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             return  heroCard.ToAttachment();
         }
 
+
+        public static Attachment parseJSONToCards(JToken token)
+        {
+            var heroCard = new HeroCard
+            {
+                Title = "Search results",
+                Subtitle = "These are your selected flights",
+                Text = "Click on each card to book a flight.",
+                Images = new List<CardImage> { new CardImage("https://i.gocollette.com/img/destination-page/europe/europe-continent/europe-ms3.jpg?h=720&w=1280&la=en"), new CardImage("http://cdn.bootsnall.com/locations/Europe-thumb.jpg") },
+                Buttons = new List<CardAction> { }
+            };
+
+
+            Object[] fares = token.SelectToken("flights").ToArray();
+            for (int i = 0; i < 10; i++)
+            {
+                try
+                {
+                    heroCard.Buttons.Add(new CardAction(ActionTypes.OpenUrl, token.SelectToken("flights[" + i + "].number").ToString() , value: "http://www.ryanair.com"));
+                    // response += "From " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".nn";
+                }
+                catch (Exception ex) { }
+            }
+
+            return heroCard.ToAttachment();
+        }
+
+
     public static string parsearJSONVuelos (JToken token){
 		string response = "";
             try{
@@ -416,12 +444,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
         }
 
 
-   public async Task AfterMovieAsync(IDialogContext context, IAwaitable<bool> argument)
-        {
-
-             await context.PostAsync("Movie search ");
-            
-        }
+    
 	
         public async Task AfterFlightsAsync(IDialogContext context, IAwaitable<string> argument)
         {
@@ -436,7 +459,16 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 String resp = "";
                 try{
 
-                    resp=parsearJSONVuelos(token);
+                    //resp=parsearJSONVuelos(token);
+
+                    var messageReturn = context.MakeMessage();
+
+                    var attachment = parseJSONToCards(token);
+                    messageReturn.Attachments.Add(attachment);
+
+                    await context.PostAsync(messageReturn);
+
+//                    
                 }
                 catch(Exception ex){
                     resp = ex.Message + resultJSON;
