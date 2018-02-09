@@ -232,10 +232,10 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                                     AfterCheapFlightsAsync,BotMonthOptions,
                     "Your closest airport is Madrid, Barajas. Please select a Month when you want to fly", 
                     "Didn't get that", 
-                    1, 
+                    3, 
                     PromptStyle.Auto);
             }
-            if (message.Text.ToUpper() == ":)")
+            else if (message.Text.ToUpper() == ":)")
             {
                 List<string> BotMonthOptions = new List<string>();
                 //BotMonthOptions.Add("January");
@@ -278,6 +278,13 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 
 
                 
+            }else if (message.Text.ToUpper() == "HELLO")
+            {
+                
+                await context.PostAsync("Hello, my name is Ryabot and I can help you with things like your flight status. Type a smily face to get cheap flights from your city!");
+
+                //  context.Wait(this.flightNumberAsync);
+
             }else if (message.Text.ToUpper() == "HELP")
             {
                 var messageReturn = context.MakeMessage();
@@ -323,11 +330,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 
                 //  context.Wait(this.flightNumberAsync);
 
-            }
-
-
- 
-            else
+            } else
             {
                 
                 //await context.PostAsync("Result");
