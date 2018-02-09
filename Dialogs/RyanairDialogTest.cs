@@ -137,7 +137,16 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
 		string response = "";
             try{
 
-                response = token.ToString();
+
+                //response = token.ToString();
+
+                Object[] fares = token.SelectToken("flights").ToArray();
+                for (int i = 0; i < fares.Length; i++)
+                {
+
+                    response += "Flight number " + token.SelectToken("flights[" + i + "].number");// goes from " + token.SelectToken("fares[" + i + "].outbound.departureAirport.name").ToString() + " to  " + token.SelectToken("fares[" + i + "].outbound.arrivalAirport.name").ToString() + " and it costs " + token.SelectToken("fares[" + i + "].outbound.price.value").ToString() + token.SelectToken("fares[" + i + "].outbound.price.currencySymbol").ToString() + ".nn";
+
+                }
 
             /*    String status = "";//token.SelectToken("flights[0].status.message").ToString();
 			
